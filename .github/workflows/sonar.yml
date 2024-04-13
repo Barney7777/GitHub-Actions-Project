@@ -34,6 +34,8 @@ jobs:
           docker push barneywang/tic-tac-toe:latest
         env: 
           DOCKER_CLI_ACI: 1
+      - name: trivy image scan
+        run: trivy image barneywang/tic-tac-toe:latest > trivyimage.txt
 
 
         
