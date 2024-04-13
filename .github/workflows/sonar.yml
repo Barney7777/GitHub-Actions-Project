@@ -24,4 +24,9 @@ jobs:
       #     path: coverage/lcov.info
       - name: npm install dependencies
         run: npm install
+      - name: trivy file scan
+        run: trivy fs . > trivy.txt
+
+
+
 
