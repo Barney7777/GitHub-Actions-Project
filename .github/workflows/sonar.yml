@@ -36,6 +36,19 @@ jobs:
           DOCKER_CLI_ACI: 1
       - name: trivy image scan
         run: trivy image barneywang/tic-tac-toe:latest > trivyimage.txt
+  deploy:
+    needs: build-analyze-scan
+    runs-on: [barney]
+    steps:
+      - name: docker pull image
+        run: docker pull barneywang/tic-tac-toe:latest
+      - name: trivy image scan
+        run: trivy image barneywang/tic-tac-toe:latest > trivyimagedeploy.txt
+      - name: deploy to container
+        run: docker run -d -p 3000:3000 barneywang/tic-tac-toe:latest
+        
+
+
 
 
         
